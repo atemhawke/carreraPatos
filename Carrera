@@ -1,0 +1,223 @@
+public class CarreraPatos extends javax.swing.JFrame implements Observer {
+	 
+    private Thread[] hilos;
+     
+     
+    public CarreraPatos() {
+        initComponents();
+        hilos = new Thread[4];
+    }
+ 
+   
+    private void initComponents() {
+ 
+        ProgressBar1 = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
+        ProgressBar2 = new javax.swing.JProgressBar();
+        jLabel2 = new javax.swing.JLabel();
+        ProgressBar3 = new javax.swing.JProgressBar();
+        jLabel3 = new javax.swing.JLabel();
+        ProgressBar4 = new javax.swing.JProgressBar();
+        jLabel4 = new javax.swing.JLabel();
+        btnIniciar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        JLabelG = new javax.swing.JLabel();
+ 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+ 
+        ProgressBar1.setStringPainted(true);
+ 
+        jLabel1.setText("Pato 1");
+ 
+        ProgressBar2.setStringPainted(true);
+ 
+        jLabel2.setText("Pato 2");
+ 
+        ProgressBar3.setStringPainted(true);
+ 
+        jLabel3.setText("Pato 3");
+ 
+        ProgressBar4.setStringPainted(true);
+ 
+        jLabel4.setText("Pato 4");
+ 
+        btnIniciar.setText("Iniciar");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+ 
+        jLabel5.setText("El ganador es: ");
+ 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(ProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(ProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(ProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(ProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JLabelG, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel1))
+                    .addComponent(ProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel2))
+                    .addComponent(ProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel3))
+                    .addComponent(ProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel4))
+                    .addComponent(ProgressBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JLabelG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+        );
+ 
+        pack();
+    }
+ 
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {
+ 
+        this.btnIniciar.setEnabled(false);
+        this.JLabelG.setText("");
+         
+        for (int i = 0; i < hilos.length; i++) {
+            Pato c = new Pato((i+1)+"");
+            c.addObserver(this);
+            hilos[i] = new Thread(c);
+            hilos[i].start();
+        }
+         
+         
+         
+    }
+ 
+    private void terminar(){
+         
+        for (int i = 0; i < hilos.length; i++) {
+            hilos[i].interrupt();
+        }
+         
+    }
+     
+    
+    public static void main(String args[]) {
+       
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CarreraPatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CarreraPatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CarreraPatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CarreraPatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+       
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CarreraPatos().setVisible(true);
+            }
+        });
+    }
+ 
+  
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel JLabelG;
+    private javax.swing.JProgressBar ProgressBar1;
+    private javax.swing.JProgressBar ProgressBar2;
+    private javax.swing.JProgressBar ProgressBar3;
+    private javax.swing.JProgressBar ProgressBar4;
+ 
+    @Override
+    public void update(Observable o, Object arg) {
+ 
+        Pato c = (Pato) o;
+        int porcentaje = (int) arg;
+ 
+        switch (c.getNombre()) {
+            case "1":
+                this.ProgressBar1.setValue(porcentaje);
+                break;
+ 
+            case "2":
+                this.ProgressBar2.setValue(porcentaje);
+                break;
+ 
+            case "3":
+                this.ProgressBar3.setValue(porcentaje);
+                break;
+ 
+            case "4":
+                this.ProgressBar4.setValue(porcentaje);
+                break;
+ 
+        }
+ 
+        if(porcentaje>=100){
+           terminar();
+           this.btnIniciar.setEnabled(true);
+           this.JLabelG.setText("Pato "+c.getNombre());
+        }
+         
+         
+    }
+ 
+}
